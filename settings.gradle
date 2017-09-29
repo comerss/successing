@@ -1,2 +1,2 @@
-include ':jni', ':basic'
+include ':jni', ':basic', ':baselibrary'
 include ':app', ':kotlin'
