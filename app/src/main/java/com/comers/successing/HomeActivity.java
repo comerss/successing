@@ -1,7 +1,7 @@
 package com.comers.successing;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -26,4 +26,5 @@ public class HomeActivity extends AppCompatActivity {
     static {
         System.loadLibrary("native-lib");
     }
+
 }
