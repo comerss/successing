@@ -15,8 +15,9 @@ public class SelectSort {
         int array[] = new int[]{1, 4, 46, 53, 2425, 42, 34, 5, 234, 46, 3, 456, 456, 4, 656, 24, 626, 26256, 56, 256, 256, 657, 534};
         int min = 0;
         for (int i = 0; i < array.length - 1; i++) {
+            min=i;
             for (int j = i + 1; j < array.length; j++) {
-                if (array[i] > array[j]) {
+                if (array[j] < array[min]) {
                     min = j;
                 }
             }
