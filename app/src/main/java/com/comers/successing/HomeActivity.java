@@ -1,10 +1,27 @@
 package com.comers.successing;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
+
 public class HomeActivity extends AppCompatActivity {
+
+    private TextView rxExercise;
+    private TextView txHello;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -12,8 +29,64 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         // Example of a call to a native method
-        TextView tv = (TextView) findViewById(R.id.sample_text);
-        tv.setText(stringFromJNI());
+        initView();
+        initListener();
+    }
+
+    private void initListener() {
+        rxExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Observable.create(new ObservableOnSubscribe<String>() {
+                    @Override
+                    public void subscribe(ObservableEmitter<String> e) throws Exception {
+                        e.onNext("hahshsha");
+                        e.onNext("hahshsha----");
+                        e.onNext("hahshsha----000000");
+                        e.onNext("hahshsha----00000000000");
+                        e.onComplete();
+                    }
+                }).subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.i("haha",s);
+                    }
+                });
+                List list=new ArrayList();
+                list.add("fasafadfadf11");
+                list.add("fasajdf55j55dj55555");
+                list.add("fasa rghsdf");
+                list.add("fasa rghsdf");
+                list.add("fassdfadf22222");
+                list.add("fassdfadf22222");
+                list.add("fasdfjdjdj666666666666");
+                list.add("fasdf333jj3333");
+               Observable.fromIterable(list).concatMap(new Function<String, ObservableSource<String>>() {
+                   @Override
+                   public ObservableSource<String> apply(String s) throws Exception {
+                       return Observable.just(s);
+                   }
+               }).filter(new Predicate<String>() {
+                   @Override
+                   public boolean test(String str) throws Exception {
+                       return str.length()>7;
+                   }
+               }).distinct().subscribe(new Consumer<String>() {
+                   @Override
+                   public void accept(String string) throws Exception {
+                       Log.i("haha",string);
+                   }
+               });
+
+            }
+        });
+        txHello.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomeActivity.this,KotlinActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -27,4 +100,9 @@ public class HomeActivity extends AppCompatActivity {
         System.loadLibrary("native-lib");
     }
 
+    private void initView() {
+        rxExercise = findViewById(R.id.rxExercise);
+        txHello = findViewById(R.id.sample_text);
+        txHello.setText(stringFromJNI());
+    }
 }

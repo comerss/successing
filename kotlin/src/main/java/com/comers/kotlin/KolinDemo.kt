@@ -20,7 +20,7 @@ class KolinDemo {
     }
 
     fun ad(a: Any): Int? {
-        return null;
+        return null
     }
 
     fun getStringLength(obj: Any): Int? {
