@@ -13,15 +13,7 @@ import java.util.regex.Pattern
 /**
  * Created by human on 2017/5/27.
  */
-class UIUtils {
-
-    fun canLoadMore(list: List<*>?): Boolean {
-        return if (list == null || list.size < 10) {
-            false
-        } else {
-            true
-        }
-    }
+object UIUtils {
 
     /**
      * 从EditText获取文本

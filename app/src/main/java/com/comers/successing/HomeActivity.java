@@ -1,11 +1,16 @@
 package com.comers.successing;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.comers.baselibrary.utils.ToastUtils;
+import com.comers.baselibrary.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +36,15 @@ public class HomeActivity extends AppCompatActivity {
         // Example of a call to a native method
         initView();
         initListener();
+        HandlerThread thread=new HandlerThread("jsjdf");
+        thread.start();
+        Looper.prepare();
+        Handler handler=new Handler(Looper.getMainLooper());
+        ToastUtils.showToast("hhhhhhhh");
+        UIUtils.INSTANCE.getVersionCode(this);
+        Handler handler6=new Handler();
+        Handler handler1=new Handler(Looper.getMainLooper());
+        Handler handler2=new Handler(Looper.myLooper());
     }
 
     private void initListener() {
@@ -80,13 +94,13 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-        txHello.setOnClickListener(new View.OnClickListener() {
+       /* txHello.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(HomeActivity.this,KotlinActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     /**

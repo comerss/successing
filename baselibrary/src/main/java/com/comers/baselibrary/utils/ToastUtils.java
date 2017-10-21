@@ -13,6 +13,7 @@ public class ToastUtils {
         Toast toast = Toast.makeText(context, str, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
+        String versionCode = UIUtils.INSTANCE.getVersionCode(context);
     }
 
     private static Toast mToast;
@@ -26,10 +27,11 @@ public class ToastUtils {
         }
         if (!TextUtils.isEmpty(content)) {
             mToast.show();
-        }else{
+        } else {
             mToast.cancel();
         }
     }
+
     public static void showToastLong(String text) {
         if (mToast == null) {
             mToast = Toast.makeText(GlobalApplication.Companion.getMContext(), text, Toast.LENGTH_LONG);
@@ -61,7 +63,7 @@ public class ToastUtils {
         }
     }
 
-    public static void showTimeToast( final long cnt,String text) {
+    public static void showTimeToast(final long cnt, String text) {
         mToast = Toast.makeText(GlobalApplication.Companion.getMContext(), text, Toast.LENGTH_LONG);
         mToast.setGravity(Gravity.CENTER, 0, 0);
         mToast.show();

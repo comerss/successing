@@ -26,6 +26,6 @@ class KotlinActivity: BaseActivity(), View.OnClickListener {
 
     override fun initListener() {
         val fooClass =  KotlinActivity::class.java
-        rxExercise.setOnClickListener { toActivity(fooClass) }
+
     }
 }

@@ -3,17 +3,20 @@ package com.comers.kotlin
 /**
  * Created by Comers on 2017/10/9.
  */
-class KolinDemo {
-
+class KolinDemo constructor(int: Int) {
     //参数声明
     // -->可变参数
-    val ar: Int = 0;
-    var a = 5;
-    var kai: Int = 0;
-    var si = "jogaogoad";
-
-    constructor()
-    constructor(a: Int, kai: Int, si: String) {
+    companion object {
+        val mContext:String="adfdsfad"
+    }
+    val ar: Int = 0
+    var a = 5
+    var kai: Int = 0
+    var si = "jogaogoad"
+    var strs :String
+        get() {return "dfiashdfi"}
+        set(value) {si=value}
+    constructor(a: Int, kai: Int, si: String) : this(int = a) {
         this.a = a
         this.kai = kai
         this.si = si
