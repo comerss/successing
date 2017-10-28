@@ -47,7 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+        HttpHelper.doPost()
+                .add("jfdaodf","fasdf")
+                .path("")
+                .execute(new CallBack<User>() {
+                    @Override
+                    public void onSuccess(HttpResult<User> sResult) {
 
-
+                    }
+                });
     }
 }

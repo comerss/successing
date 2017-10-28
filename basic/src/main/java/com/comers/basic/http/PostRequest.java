@@ -10,7 +10,7 @@ import okhttp3.RequestBody;
  * Created by Comers on 2017/10/24.
  */
 
-public class PostRequest extends BaseRequest {
+public class PostRequest extends BaseRequest<PostRequest> {
     public PostRequest(Type type){
         super(type);
     }
