@@ -12,8 +12,10 @@ import android.widget.TextView;
 import com.comers.baselibrary.utils.ToastUtils;
 import com.comers.baselibrary.utils.UIUtils;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -45,6 +47,9 @@ public class HomeActivity extends AppCompatActivity {
         Handler handler6=new Handler();
         Handler handler1=new Handler(Looper.getMainLooper());
         Handler handler2=new Handler(Looper.myLooper());
+        Queue queue=new ArrayDeque();
+        queue.poll();
+        queue.peek();
     }
 
     private void initListener() {
