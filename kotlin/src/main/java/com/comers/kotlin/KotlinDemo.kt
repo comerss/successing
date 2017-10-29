@@ -1,12 +1,11 @@
 package com.comers.kotlin
 
-import android.content.Context
-
 /**
  * Created by Comers on 2017/10/16.
  */
+data class JavaBean(var name: String)
 
-object KotlinDemo {
-    var context: Context? = null
-        internal set
+data class KotlinTest(var name: String)
+data class KotlinDemo(var sex: String, var age: Int) {
+    var info: String = sex + age
 }

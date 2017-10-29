@@ -30,14 +30,14 @@ public class HttpHelper {
         return mSingleton;
     }
 
-    public static FormRequest doForm() {
-        return new FormRequest(BaseRequest.Type.FORM);
+    public static FormRequest doForm(String url) {
+        return new FormRequest(url);
     }
-    public static PostRequest doPost() {
-        return new PostRequest(BaseRequest.Type.POST);
+    public static PostRequest doPost(String url) {
+        return new PostRequest(url);
     }
-    public static GetRequest doGet() {
-        return new GetRequest(BaseRequest.Type.GET);
+    public static GetRequest doGet(String url) {
+        return new GetRequest(url);
     }
 
     public static OkHttpClient getClient() {

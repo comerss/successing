@@ -11,8 +11,8 @@ import okhttp3.RequestBody;
  */
 
 public class PostRequest extends BaseRequest<PostRequest> {
-    public PostRequest(Type type){
-        super(type);
+    public PostRequest(String url){
+        super(url);
     }
     public PostRequest add(String key, Object value) {
         if (TextUtils.isEmpty(key)) {

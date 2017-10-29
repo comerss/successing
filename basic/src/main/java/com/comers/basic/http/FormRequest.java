@@ -19,8 +19,8 @@ public class FormRequest extends BaseRequest<FormRequest> {
 
     private final MultipartBody.Builder mBuilder;
 
-    public FormRequest(Type type) {
-        super(type);
+    public FormRequest(String url) {
+        super(url);
         mBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
     }
 

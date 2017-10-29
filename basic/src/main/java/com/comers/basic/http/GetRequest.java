@@ -11,8 +11,8 @@ import okhttp3.Request;
  */
 
 public class GetRequest extends BaseRequest<GetRequest> {
-    public GetRequest(Type type) {
-        super(type);
+    public GetRequest(String url) {
+        super(url);
     }
 
     public GetRequest add(String key, Object value) {

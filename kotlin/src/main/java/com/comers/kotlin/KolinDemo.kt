@@ -23,6 +23,8 @@ class KolinDemo constructor(int: Int) {
     }
 
     fun ad(a: Any): Int? {
+        ObjectDemo.doSomeThing("name")
+        ObjectDemo.mContext
         return null
     }
 
@@ -59,4 +61,5 @@ class KolinDemo constructor(int: Int) {
             print(x)
         }
     }
+
 }

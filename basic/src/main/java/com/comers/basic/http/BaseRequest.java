@@ -23,20 +23,13 @@ public class BaseRequest<R extends BaseRequest> {
      Map<String, Object> mObjectMaps = new HashMap<>();
     Gson mGson=new Gson();
      boolean mShowDialog = true;
-     Type mType;
 
-    public BaseRequest(Type type) {
-        mType = type;
+    public BaseRequest(String url) {
+        mURI = url;
         mObjectMaps.clear();
         //设置公共参数
         mObjectMaps.put("token", "token");
     }
-
-    public R path(String url) {
-        mURI = url;
-        return (R) this;
-    }
-
     public R params(Map<String, Object> params) {
         if (params == null || params.isEmpty())
             return (R) this;
@@ -132,7 +125,4 @@ public class BaseRequest<R extends BaseRequest> {
         }
     }
 
-    public enum Type {
-        GET, POST, FORM
-    }
 }
