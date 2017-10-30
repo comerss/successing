@@ -19,10 +19,10 @@ import okhttp3.Response;
  */
 
 public class BaseRequest<R extends BaseRequest> {
-     String mURI = "";
-     Map<String, Object> mObjectMaps = new HashMap<>();
-    Gson mGson=new Gson();
-     boolean mShowDialog = true;
+    String mURI = "";
+    Map<String, Object> mObjectMaps = new HashMap<>();
+    Gson mGson = new Gson();
+    boolean mShowDialog = true;
 
     public BaseRequest(String url) {
         mURI = url;
@@ -30,6 +30,7 @@ public class BaseRequest<R extends BaseRequest> {
         //设置公共参数
         mObjectMaps.put("token", "token");
     }
+
     public R params(Map<String, Object> params) {
         if (params == null || params.isEmpty())
             return (R) this;
@@ -85,7 +86,7 @@ public class BaseRequest<R extends BaseRequest> {
                     Platform.execute(new Runnable() {
                         @Override
                         public void run() {
-                            callBack.onSuccess((HttpResult<T>) mGson.fromJson(json,callBack.getType()));
+                            callBack.onSuccess((HttpResult<T>) mGson.fromJson(json, callBack.getType()));
                         }
                     });
                 }
@@ -95,7 +96,7 @@ public class BaseRequest<R extends BaseRequest> {
 
     public <T> void performSyck(final Request request, final BaseCallBack<T> callBack) {
         Response response = null;
-        String json="";
+        String json = "";
         try {
             response = HttpHelper.getClient().newCall(request).execute();
         } catch (Exception e) {
@@ -114,13 +115,13 @@ public class BaseRequest<R extends BaseRequest> {
         }
         if (response.isSuccessful()) {
             try {
-                json=response.body().string();
+                json = response.body().string();
             } catch (IOException e) {
                 callBack.onError(e.getMessage());
                 e.printStackTrace();
             }
-            callBack.onSuccess((HttpResult<T>) mGson.fromJson(json,callBack.getType()));
-        }else{
+            callBack.onSuccess((HttpResult<T>) mGson.fromJson(json, callBack.getType()));
+        } else {
             callBack.onError("请求失败，请稍后重试！");
         }
     }

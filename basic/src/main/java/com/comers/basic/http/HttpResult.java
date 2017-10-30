@@ -9,4 +9,14 @@ public class HttpResult<T> {
     public boolean success;
     public int code;
     public T data;
+
+    @Override
+    public String toString() {
+        return "HttpResult{" +
+                "msg='" + msg + '\'' +
+                ", success=" + success +
+                ", code=" + code +
+                ", data=" + data +
+                '}';
+    }
 }

@@ -55,7 +55,7 @@ public class FormRequest extends BaseRequest<FormRequest> {
 
     public <T> void execute(BaseCallBack<T> callBack) {
         if(TextUtils.isEmpty(mURI)){
-
+            //提示输入url
             return;
         }
         for(Map.Entry<String,Object> param:mObjectMaps.entrySet()){
