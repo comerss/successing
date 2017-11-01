@@ -1,15 +1,20 @@
 package com.comers.basic;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.TextView;
 
 import com.comers.basic.http.CallBack;
 import com.comers.basic.http.HttpHelper;
 import com.comers.basic.http.HttpResult;
-import com.comers.basic.request.User;
+import com.comers.basic.ui.User;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +23,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView textView=new TextView(this);
+        textView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
         getData();
     }
 
@@ -36,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.i("sresult-->",sResult.toString());
                     }
                 });
-       /* HttpHelper.doGet("gdfg")
+        HttpHelper.doGet("gdfg")
                 .add("fsd","dfd")
                 .add("fdffd","dfad")
                 .params(new HashMap<String, Object>())
@@ -61,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                    public void onSuccess(HttpResult<List<ContactsContract.Data>> sResult) {
 
                    }
-               });*/
+               });
     }
 
 }

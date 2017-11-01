@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">Basic</string>
+    <string name="app_name">Market</string>
+    <string name="hospital_name">健康医生</string>
+    <string name="setting_name">设置</string>
+    <string name="mail_name">通讯录</string>
+    <string name="advice_name">咨询</string>
+    <string name="gravity_left">left</string>
+    <string name="gravity_center">center</string>
+    <string name="gravity_right">right</string>
+    <string name="today">今天</string>
+    <string name="Monday">一</string>
+    <string name="Tuesday">二</string>
+    <string name="Wednesday">三</string>
+    <string name="Thursday">四</string>
+    <string name="Friday">五</string>
+    <string name="Saturday">六</string>
+    <string name="Sunday">日</string>
+    <string name="update_app_model_prepare">准备下载</string>
+    <string name="update_app_model_progress">正在下载 %1$d%2$s</string>
+    <string name="update_app_model_success">下载成功(点击安装)</string>
+    <string name="update_app_model_error">下载失败(点击浏览器下载)</string>
+    <string name="no_net">当前无网络连接</string>
+    <string name="net_error">网络错误，请检查网络</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.comers.basic.http;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.util.concurrent.TimeUnit;
@@ -18,7 +19,7 @@ public class HttpHelper {
     private static long WRITE_TIME_OUT = 60;
     private static long READ_TIME_OUT = 60;
     private volatile static OkHttpClient mOkHttpClient;
-
+    public static Context mContext;
     public static HttpHelper getInstance() {
         if (mSingleton == null) {
             synchronized (HttpHelper.class) {

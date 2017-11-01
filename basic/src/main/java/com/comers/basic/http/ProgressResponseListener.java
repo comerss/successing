@@ -5,6 +5,5 @@ package com.comers.basic.http;
  */
 
 public interface ProgressResponseListener {
-
     void onResponseProgress(long totalBytesRead, long contentLength, boolean done);
 }

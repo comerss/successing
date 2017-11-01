@@ -1,4 +1,4 @@
-package com.comers.basic.request;
+package com.comers.basic.ui;
 
 /**
  * Created by Comers on 2017/10/26.
