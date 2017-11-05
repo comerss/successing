@@ -2,6 +2,10 @@ package com.comers.basic.http;
 
 import android.text.TextUtils;
 
+import com.liangyibang.market.utils.ConstantsPool;
+import com.liangyibang.market.utils.SharedUtils;
+import com.liangyibang.market.utils.UIUtils;
+
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -32,14 +36,31 @@ public class PostRequest extends BaseRequest<PostRequest> {
             return;
         }
         String json=JsonParseHelper.parse(mObjectMaps);
-        //TODO 添加公共头部
-
         RequestBody body= RequestBody.create(MediaType.parse("application/json; charset=utf-8"),json);
         final Request request = new Request.Builder()
                 .url(mURI)
+                .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                .addHeader("Cookie", "app=android")
+                .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
                 .post(body)
                 .build();
         perform(request, callBack);
+    }
+    public <T> void executeSync(BaseCallBack<T> callBack) {
+        if (TextUtils.isEmpty(mURI)) {
+            //提示输入URL
+            return;
+        }
+        String json=JsonParseHelper.parse(mObjectMaps);
+        RequestBody body= RequestBody.create(MediaType.parse("application/json; charset=utf-8"),json);
+        final Request request = new Request.Builder()
+                .url(mURI)
+                .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                .addHeader("Cookie", "app=android")
+                .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
+                .post(body)
+                .build();
+        performSync(request, callBack);
     }
 
 }

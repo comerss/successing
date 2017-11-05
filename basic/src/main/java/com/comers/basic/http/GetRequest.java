@@ -2,6 +2,10 @@ package com.comers.basic.http;
 
 import android.text.TextUtils;
 
+import com.liangyibang.market.utils.ConstantsPool;
+import com.liangyibang.market.utils.SharedUtils;
+import com.liangyibang.market.utils.UIUtils;
+
 import java.util.Map;
 
 import okhttp3.Request;
@@ -30,25 +34,49 @@ public class GetRequest extends BaseRequest<GetRequest> {
     public <T> void execute(BaseCallBack<T> callBack) {
         if (TextUtils.isEmpty(mURI)) {
             //提示输入URL
+            return;
         }
         //TODO 添加公共头部
         String url = getFixUrl(mURI);
         final Request request = new Request.Builder()
                 .url(url)
+                .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                .addHeader("Cookie", "app=android")
+                .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
                 .build();
         perform(request, callBack);
     }
+    public <T> void execute(Class<T> tClass,BaseCallBack<T> callBack){}
+    public <T> void executeSync(BaseCallBack<T> callBack) {
+        if (TextUtils.isEmpty(mURI)) {
+            //提示输入URL
+            return;
+        }
+        String url = getFixUrl(mURI);
+        final Request request = new Request.Builder()
+                .url(url)
+                .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                .addHeader("Cookie", "app=android")
+                .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
+                .build();
+        performSync(request, callBack);
+    }
 
     private String getFixUrl(String url) {
+        String argument = "";
         for (Map.Entry<String, Object> param : mObjectMaps.entrySet()) {
             if (param.getKey() != null) {
-                if (null != param.getValue()) {
-                    url = url + "&" + param.getKey() + "=" + param.getValue();
+                if (TextUtils.isEmpty(argument)) {
+                    argument = param.getKey() + "=" + param.getValue();
                 } else {
-                    url = url + "&" + param.getKey() + "=" + "";
+                    if (null!=param.getKey()) {
+                        argument = argument + "&" + param.getKey() + "=" + param.getValue();
+                    } else {
+                        argument = argument + "&" + param.getKey() + "=" +"";
+                    }
                 }
             }
         }
-        return url;
+        return url+"?"+argument;
     }
 }

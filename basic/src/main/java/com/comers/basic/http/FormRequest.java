@@ -2,6 +2,10 @@ package com.comers.basic.http;
 
 import android.text.TextUtils;
 
+import com.liangyibang.market.utils.ConstantsPool;
+import com.liangyibang.market.utils.SharedUtils;
+import com.liangyibang.market.utils.UIUtils;
+
 import java.io.File;
 import java.util.List;
 import java.util.Map;
@@ -53,25 +57,44 @@ public class FormRequest extends BaseRequest<FormRequest> {
         return this;
     }
 
-    public <T> void execute(BaseCallBack<T> callBack) {
-        if(TextUtils.isEmpty(mURI)){
-            //提示输入url
-            return;
-        }
-        for(Map.Entry<String,Object> param:mObjectMaps.entrySet()){
-            if(param.getKey()!=null){
-                if(param.getValue()!=null){
-                    mBuilder.addFormDataPart(param.getKey(),param.getValue().toString());
-                }else{
-                    mBuilder.addFormDataPart(param.getKey(),"");
-                }
-            }
-        }
-        //TODO 添加公共头部
+     public <T> void execute(BaseCallBack<T> callBack) {
+         if (initPost()) return;
+         final Request request = new Request.Builder()
+                 .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                 .addHeader("Cookie", "app=android")
+                 .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
+                 .url(mURI)
+                 .post(mBuilder.build())
+                 .build();
+         perform(request, callBack);
+     }
+    public <T> void executeSync(BaseCallBack<T> callBack) {
+        if (initPost()) return;
         final Request request = new Request.Builder()
+                .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                .addHeader("Cookie", "app=android")
+                .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
                 .url(mURI)
                 .post(mBuilder.build())
                 .build();
-        perform(request, callBack);
+        performSync(request, callBack);
     }
+
+    private boolean initPost() {
+        if (TextUtils.isEmpty(mURI)) {
+            //提示输入url
+            return true;
+        }
+        for (Map.Entry<String, Object> param : mObjectMaps.entrySet()) {
+            if (param.getKey() != null) {
+                if (param.getValue() != null) {
+                    mBuilder.addFormDataPart(param.getKey(), param.getValue().toString());
+                } else {
+                    mBuilder.addFormDataPart(param.getKey(), "");
+                }
+            }
+        }
+        return false;
+    }
+
 }

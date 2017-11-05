@@ -6,8 +6,8 @@ package com.comers.basic.http;
 
 public class HttpResult<T> {
     public String msg;
-    public boolean success;
-    public int code;
+    public boolean success=false;
+    public int code=-1;
     public T data;
 
     @Override

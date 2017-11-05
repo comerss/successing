@@ -18,7 +18,7 @@ public class ProgressHelper {
      * @param progressListener 进度回调接口
      * @return 包装后的OkHttpClient，使用clone方法返回
      */
-    public static OkHttpClient addProgressResponseListener( final ProgressResponseListener progressListener) {
+    public static OkHttpClient addProgressResponseListener(final ProgressResponseListener progressListener) {
         //克隆
         OkHttpClient clone = HttpHelper.getClient();
         //增加拦截器
