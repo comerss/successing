@@ -23,12 +23,6 @@ public class Constant {
     //本地
     public static final String Host = "http://10.0.0.57:8082/";
     //-----------------------------华丽分割线----------------------------------------------------------------------------
-    //登录
-    public static final String LOGIN="bd/login/pass";
-    //处方列表
-    public static final String RECIPEL_LIST="bd/recipel/bdlist";
-    //待录方
-    public static final String UN_FINISHED = "/electron/recipel/detail";
 
 
 }

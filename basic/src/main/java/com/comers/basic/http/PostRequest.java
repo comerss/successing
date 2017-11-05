@@ -2,9 +2,9 @@ package com.comers.basic.http;
 
 import android.text.TextUtils;
 
-import com.liangyibang.market.utils.ConstantsPool;
-import com.liangyibang.market.utils.SharedUtils;
-import com.liangyibang.market.utils.UIUtils;
+import com.comers.basic.utils.ConstantsPool;
+import com.comers.basic.utils.SharedUtils;
+import com.comers.basic.utils.UIUtils;
 
 import okhttp3.MediaType;
 import okhttp3.Request;
@@ -39,7 +39,7 @@ public class PostRequest extends BaseRequest<PostRequest> {
         RequestBody body= RequestBody.create(MediaType.parse("application/json; charset=utf-8"),json);
         final Request request = new Request.Builder()
                 .url(mURI)
-                .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                .addHeader("Cookie", "token=" + SharedUtils.get(ConstantsPool.TOKEN, ""))
                 .addHeader("Cookie", "app=android")
                 .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
                 .post(body)
@@ -55,7 +55,7 @@ public class PostRequest extends BaseRequest<PostRequest> {
         RequestBody body= RequestBody.create(MediaType.parse("application/json; charset=utf-8"),json);
         final Request request = new Request.Builder()
                 .url(mURI)
-                .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                .addHeader("Cookie", "token=" + SharedUtils.get(ConstantsPool.TOKEN, ""))
                 .addHeader("Cookie", "app=android")
                 .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
                 .post(body)

@@ -2,9 +2,9 @@ package com.comers.basic.http;
 
 import android.text.TextUtils;
 
-import com.liangyibang.market.utils.ConstantsPool;
-import com.liangyibang.market.utils.SharedUtils;
-import com.liangyibang.market.utils.UIUtils;
+import com.comers.basic.utils.ConstantsPool;
+import com.comers.basic.utils.SharedUtils;
+import com.comers.basic.utils.UIUtils;
 
 import java.io.File;
 import java.util.List;
@@ -60,7 +60,7 @@ public class FormRequest extends BaseRequest<FormRequest> {
      public <T> void execute(BaseCallBack<T> callBack) {
          if (initPost()) return;
          final Request request = new Request.Builder()
-                 .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                 .addHeader("Cookie", "token=" + SharedUtils.get(ConstantsPool.TOKEN, ""))
                  .addHeader("Cookie", "app=android")
                  .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
                  .url(mURI)
@@ -71,7 +71,7 @@ public class FormRequest extends BaseRequest<FormRequest> {
     public <T> void executeSync(BaseCallBack<T> callBack) {
         if (initPost()) return;
         final Request request = new Request.Builder()
-                .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                .addHeader("Cookie", "token=" + SharedUtils.get(ConstantsPool.TOKEN, ""))
                 .addHeader("Cookie", "app=android")
                 .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
                 .url(mURI)

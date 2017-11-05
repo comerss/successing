@@ -2,9 +2,9 @@ package com.comers.basic.http;
 
 import android.text.TextUtils;
 
-import com.liangyibang.market.utils.ConstantsPool;
-import com.liangyibang.market.utils.SharedUtils;
-import com.liangyibang.market.utils.UIUtils;
+import com.comers.basic.utils.ConstantsPool;
+import com.comers.basic.utils.SharedUtils;
+import com.comers.basic.utils.UIUtils;
 
 import java.util.Map;
 
@@ -40,7 +40,7 @@ public class GetRequest extends BaseRequest<GetRequest> {
         String url = getFixUrl(mURI);
         final Request request = new Request.Builder()
                 .url(url)
-                .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                .addHeader("Cookie", "token=" + SharedUtils.get(ConstantsPool.TOKEN, ""))
                 .addHeader("Cookie", "app=android")
                 .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
                 .build();
@@ -55,7 +55,7 @@ public class GetRequest extends BaseRequest<GetRequest> {
         String url = getFixUrl(mURI);
         final Request request = new Request.Builder()
                 .url(url)
-                .addHeader("Cookie", "token=" + SharedUtils.INSTANCE.get(ConstantsPool.TOKEN, ""))
+                .addHeader("Cookie", "token=" + SharedUtils.get(ConstantsPool.TOKEN, ""))
                 .addHeader("Cookie", "app=android")
                 .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
                 .build();
