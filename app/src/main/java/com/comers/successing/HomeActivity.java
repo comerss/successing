@@ -1,34 +1,22 @@
 package com.comers.successing;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 
-import com.comers.baselibrary.utils.ToastUtils;
 import com.comers.baselibrary.utils.UIUtils;
-
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.ObservableSource;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
+import com.comers.successing.net.sourceforge.pinyin4j.PinyinHelper;
+import com.comers.successing.net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import com.comers.successing.net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import com.comers.successing.net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import com.comers.successing.net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
+import com.comers.successing.net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private TextView rxExercise;
-    private TextView txHello;
+    private EditText exCustom;
+    private EditText exSystem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,76 +24,15 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         // Example of a call to a native method
-        initView();
+
         initListener();
-        HandlerThread thread=new HandlerThread("jsjdf");
-        thread.start();
-        Looper.prepare();
-        Handler handler=new Handler(Looper.getMainLooper());
-        ToastUtils.showToast("hhhhhhhh");
+//        ToastUtils.showToast("hhhhhhhh");
         UIUtils.INSTANCE.getVersionCode(this);
-        Handler handler6=new Handler();
-        Handler handler1=new Handler(Looper.getMainLooper());
-        Handler handler2=new Handler(Looper.myLooper());
-        Queue queue=new ArrayDeque();
-        queue.poll();
-        queue.peek();
+
     }
 
     private void initListener() {
-        rxExercise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Observable.create(new ObservableOnSubscribe<String>() {
-                    @Override
-                    public void subscribe(ObservableEmitter<String> e) throws Exception {
-                        e.onNext("hahshsha");
-                        e.onNext("hahshsha----");
-                        e.onNext("hahshsha----000000");
-                        e.onNext("hahshsha----00000000000");
-                        e.onComplete();
-                    }
-                }).subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
-                        Log.i("haha",s);
-                    }
-                });
-                List list=new ArrayList();
-                list.add("fasafadfadf11");
-                list.add("fasajdf55j55dj55555");
-                list.add("fasa rghsdf");
-                list.add("fasa rghsdf");
-                list.add("fassdfadf22222");
-                list.add("fassdfadf22222");
-                list.add("fasdfjdjdj666666666666");
-                list.add("fasdf333jj3333");
-               Observable.fromIterable(list).concatMap(new Function<String, ObservableSource<String>>() {
-                   @Override
-                   public ObservableSource<String> apply(String s) throws Exception {
-                       return Observable.just(s);
-                   }
-               }).filter(new Predicate<String>() {
-                   @Override
-                   public boolean test(String str) throws Exception {
-                       return str.length()>7;
-                   }
-               }).distinct().subscribe(new Consumer<String>() {
-                   @Override
-                   public void accept(String string) throws Exception {
-                       Log.i("haha",string);
-                   }
-               });
-
-            }
-        });
-       /* txHello.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(HomeActivity.this,KotlinActivity.class);
-                startActivity(intent);
-            }
-        });*/
+      Log.i("0-0-0-0-0-",""+getPinYinHeadChar("谶"));
     }
 
     /**
@@ -118,10 +45,64 @@ public class HomeActivity extends AppCompatActivity {
     static {
         System.loadLibrary("native-lib");
     }
+    public static String getPingYin(String src) {
+        char[] t1 = null;
+        t1 = src.toCharArray();
+        String[] t2 = new String[t1.length];
+        HanyuPinyinOutputFormat t3 = new HanyuPinyinOutputFormat();
 
-    private void initView() {
-        rxExercise = findViewById(R.id.rxExercise);
-        txHello = findViewById(R.id.sample_text);
-        txHello.setText(stringFromJNI());
+        t3.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+        t3.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        t3.setVCharType(HanyuPinyinVCharType.WITH_V);
+        String t4 = "";
+        int t0 = t1.length;
+        try {
+            for (int i = 0; i < t0; i++) {
+                // 判断是否为汉字字符
+                if (java.lang.Character.toString(t1[i]).matches(
+                        "[\\u4E00-\\u9FA5]+")) {
+                    t2 = PinyinHelper.toHanyuPinyinStringArray(t1[i], t3);
+                    t4 += t2[0];
+                } else
+                    t4 += java.lang.Character.toString(t1[i]);
+            }
+            // System.out.println(t4);
+            return t4;
+        } catch (BadHanyuPinyinOutputFormatCombination e1) {
+            e1.printStackTrace();
+        }
+        return t4;
+    }
+
+    // 返回中文的首字母
+    public static String getPinYinHeadChar(String str) {
+
+        String convert = "";
+        for (int j = 0; j < str.length(); j++) {
+            char word = str.charAt(j);
+            String[] pinyinArray = PinyinHelper.toHanyuPinyinStringArray(word);
+            if (pinyinArray != null) {
+                convert += pinyinArray[0].charAt(0);
+            } else {
+                convert += word;
+            }
+        }
+        return convert;
+    }
+
+    // 将字符串转移为ASCII码
+    public static String getCnASCII(String cnStr) {
+        StringBuffer strBuf = new StringBuffer();
+        byte[] bGBK = cnStr.getBytes();
+        for (int i = 0; i < bGBK.length; i++) {
+            strBuf.append(Integer.toHexString(bGBK[i] & 0xff));
+        }
+        return strBuf.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getPingYin("綦江qq县"));
+        System.out.println(getPinYinHeadChar("綦江县"));
+        System.out.println(getCnASCII("綦江县"));
     }
 }

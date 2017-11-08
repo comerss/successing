@@ -9,7 +9,4 @@ public class HttpResult<T> {
     public String msg;
     public T data;
     public boolean success;
-    public void getType(){
-
-    }
 }

@@ -2,15 +2,12 @@ package com.comers.basic.utils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Handler;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.liangyibang.market.base.GlobalApplication;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -22,10 +19,6 @@ import java.util.regex.Pattern;
  * Created by human on 2017/5/27.
  */
 public class UIUtils {
-    public static Context getContext() {
-        return GlobalApplication.getContext();
-    }
-
     /**
      * 从EditText获取文本
      */
@@ -105,10 +98,6 @@ public class UIUtils {
                 InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 
-    public static Handler getMainHandler() {
-        return GlobalApplication.getMainHandler();
-    }
-
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */
@@ -123,10 +112,6 @@ public class UIUtils {
     public static int px2dip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
-    }
-
-    public static int getColor(int color) {
-        return getContext().getResources().getColor(color);
     }
 
     public static void hideKeyboard(Activity activity) {
@@ -156,16 +141,6 @@ public class UIUtils {
         }
     }
 
-    public static String getVersionCode() {
-        try {
-            String pkName = getContext().getPackageName();
-            String versionName = getContext()
-                    .getPackageManager().getPackageInfo(pkName, 0).versionName;
-            return versionName;
-        } catch (Exception e) {
-        }
-        return null;
-    }
     public static String getVersionCode(Context context) {
         try {
             String pkName = context.getPackageName();

@@ -47,64 +47,6 @@ public class ClassUtils {
         return t;
     }
 
-    public static boolean checkMain() {
-        return Thread.currentThread() == Looper.getMainLooper().getThread();
-    }
-
-    public static RequestBody createJson(String jsonString) {
-        checkNotNull(jsonString, "json not null!");
-        return RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), jsonString);
-    }
-
-    /**
-     * @param name
-     * @return
-     */
-    public static RequestBody createFile(String name) {
-        checkNotNull(name, "name not null!");
-        return RequestBody.create(okhttp3.MediaType.parse("multipart/form-data; charset=utf-8"), name);
-    }
-
-    /**
-     * @param file
-     * @return
-     */
-    public static RequestBody createFile(File file) {
-        checkNotNull(file, "file not null!");
-        return RequestBody.create(okhttp3.MediaType.parse("multipart/form-data; charset=utf-8"), file);
-    }
-
-    /**
-     * @param file
-     * @return
-     */
-    public static RequestBody createImage(File file) {
-        checkNotNull(file, "file not null!");
-        return RequestBody.create(okhttp3.MediaType.parse("image/jpg; charset=utf-8"), file);
-    }
-
-    public static void close(Closeable close) {
-        if (close != null) {
-            try {
-                closeThrowException(close);
-            } catch (IOException ignored) {
-            }
-        }
-    }
-
-    public static void closeThrowException(Closeable close) throws IOException {
-        if (close != null) {
-            close.close();
-        }
-    }
-
-    /**
-     * find the type by interfaces
-     *
-     * @param cls
-     * @param <R>
-     * @return
-     */
     public static <R> Type findNeedType(Class<R> cls) {
         List<Type> typeList = getMethodTypes(cls);
         if (typeList == null || typeList.isEmpty()) {

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.liangyibang.market.utils.ConstantsPool;
 
 
 /**
@@ -27,7 +26,7 @@ public class KeepLiveService extends Service {
     @Override
     public void onDestroy() {
         Intent blackIntent = new Intent();
-        blackIntent.setAction(ConstantsPool.RECEIVER_ACTION);
+//        blackIntent.setAction(ConstantsPool.RECEIVER_ACTION);
         sendBroadcast(blackIntent);
         super.onDestroy();
     }
