@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.comers.baselibrary.base.GlobalApplication;
 
-
+//真正开始自己的命运反抗之旅
 public class ToastUtils {
     public static void toast(Context context, String str) {
         Toast toast = Toast.makeText(context, str, Toast.LENGTH_SHORT);

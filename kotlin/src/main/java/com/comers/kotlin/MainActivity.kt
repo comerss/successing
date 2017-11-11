@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         val traverse = kotlinDemo?.traverse()
         kotlinDemo?.kai?.equals(kotlinDemo.kai)
         rxExercise.setOnClickListener {
-            var intent = Intent(this, JavaActivity::class.java)
+            var intent = Intent(this, KotlinActivity::class.java)
             startActivity(intent)
         }
         kotlinDemo.let { print("$it,我真的是it") }
@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         }
         Log.i("Kotlin", "初始化Kotlin-----------")
         setData(null)
-        KotlinDemo.context
         UIUtils.getContext()
         var  javabean=JavaBean("df")
         var kotlinTest=KotlinTest("hfaid")

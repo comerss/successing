@@ -1,6 +1,7 @@
 package com.comers.kotlin;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -19,8 +20,14 @@ public class JavaActivity extends AppCompatActivity {
         initView();
         rxExercise.setText("java 的世界Q");
     }
-
+    Handler mHandler=new Handler();
     private void initView() {
         rxExercise = (TextView) findViewById(R.id.rxExercise);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getLayoutInflater().getContext();
+            }
+        },1000);
     }
 }

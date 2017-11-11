@@ -1,2 +1,2 @@
-include ':basic', ':baselibrary', ':javaarithmetic', ':kotlin', ':rxjava', "app", ':library'
+include ':basic', ':baselibrary', ':javaarithmetic', ':kotlin', ':rxjava', "app", ':library', ':choseviewlibrary'
 
