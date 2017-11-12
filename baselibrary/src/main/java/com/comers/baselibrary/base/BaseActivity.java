@@ -26,7 +26,7 @@ import java.util.Map;
 
 public abstract class BaseActivity extends AppCompatActivity {
     public Context mContext;
-    private TitleBar mTitleBar;
+    public TitleBar mTitleBar;
     private FrameLayout mContainer;
     private TextView txTitle;
 
@@ -39,42 +39,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         //使用lable标签来设置页面的标题，同时如何需要右边的按钮，那么们需要自己手动在代码里设置
         setContentView(R.layout.activity_base);
         mTitleBar = findViewById(R.id.mTitleBar);
-        mContainer = findViewById(R.id.mContainer);
-        txTitle = findViewById(R.id.txTitle);
+        if (mTitleBar != null) {
+            mTitleBar.setTitle(getTitle().toString());
+            mContainer = findViewById(R.id.mContainer);
+            txTitle = findViewById(R.id.txTitle);
 //        1. 如果root为null，attachToRoot将失去作用，设置任何值都没有意义。
 //        2. 如果root不为null，attachToRoot设为true，则会给加载的布局文件的指定一个父布局，即root。
 //        3. 如果root不为null，attachToRoot设为false，则会将布局文件最外层的所有layout属性进行设置，当该view被添加到父view当中时，这些layout属性会自动生效。
-        LayoutInflater.from(this).inflate(getLayoutId(), mContainer);
-        initTitleBar();
-        mContext = this;
-        initView();
-        initData();
-        initListener();
-        ActivityManager.getDefault().onCreate(this);
-    }
-
-    private void initTitleBar() {
-        if (mTitleBar != null) {
-            mTitleBar.setTitle(getTitle().toString());
-            //点击事件直接交给子类去实现吧，因为返回的逻辑可能会不一样，如果都是返回退出是话是可以统一处理的！
-            mTitleBar.setOnTitleItemClickListener(new TitleBar.OnTitleItemClick() {
-                @Override
-                public void onBack() {
-                    //如果子类不需要finish则需要在自己的逻辑监听中返回是否finish
-                    if (mOnLefeClick != null && !mOnLefeClick.onClickListener()) {
-                        finish();//入伙需要拦截finish则需要返回true
-                    } else if (mOnLefeClick == null) {
-                        finish();
-                    }
-                }
-
-                @Override
-                public void onSure() {
-                    //右边的点击事件！
-                    if(mOnRightClick!=null)
-                        mOnRightClick.onClickListener();
-                }
-            });
+            LayoutInflater.from(this).inflate(getLayoutId(), mContainer);
+            mContext = this;
+            initView();
+            initData();
+            initListener();
+            ActivityManager.getDefault().onCreate(this);
         }
     }
 
@@ -266,29 +243,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    //设置标题
+    //设置标题，计量从清单文件里面进行设置标题！
     public void setTitle(String text) {
         if (txTitle != null)
             txTitle.setText(text);
     }
-
-    public interface OnLefeClick {
-        boolean onClickListener();
-    }
-    //返回键的点击事件
-    OnLefeClick mOnLefeClick;
-
-    public void setOnClickListener(OnLefeClick onClickListener) {
-        mOnLefeClick = onClickListener;
-    }
-    public interface OnRightClick {
-        void onClickListener();
-    }
-    //右边的按钮但是的点击事件
-    OnRightClick mOnRightClick;
-
-    public void setOnRightClickListener(OnRightClick onClickListener) {
-        mOnRightClick = onClickListener;
-    }
-
 }
