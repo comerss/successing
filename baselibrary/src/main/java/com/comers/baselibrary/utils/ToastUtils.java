@@ -20,7 +20,7 @@ public class ToastUtils {
 
     public static void showToast(String content) {
         if (mToast == null) {
-            mToast = Toast.makeText(GlobalApplication.Companion.getMContext(), content, Toast.LENGTH_SHORT);
+            mToast = Toast.makeText(GlobalApplication.getContext(), content, Toast.LENGTH_SHORT);
             mToast.setGravity(Gravity.CENTER, 0, 0);
         } else {
             mToast.setText(content);
@@ -34,7 +34,7 @@ public class ToastUtils {
 
     public static void showToastLong(String text) {
         if (mToast == null) {
-            mToast = Toast.makeText(GlobalApplication.Companion.getMContext(), text, Toast.LENGTH_LONG);
+            mToast = Toast.makeText(GlobalApplication.getContext(), text, Toast.LENGTH_LONG);
         } else {
             mToast.setText(text);
             mToast.setDuration(Toast.LENGTH_LONG);
@@ -47,7 +47,7 @@ public class ToastUtils {
 
     public static void showToastCenter(String text) {
         if (mToast == null) {
-            mToast = Toast.makeText(GlobalApplication.Companion.getMContext(), text, Toast.LENGTH_SHORT);
+            mToast = Toast.makeText(GlobalApplication.getContext(), text, Toast.LENGTH_SHORT);
             mToast.setGravity(Gravity.CENTER, 0, 0);
         } else {
             mToast.setText(text);
@@ -64,7 +64,7 @@ public class ToastUtils {
     }
 
     public static void showTimeToast(final long cnt, String text) {
-        mToast = Toast.makeText(GlobalApplication.Companion.getMContext(), text, Toast.LENGTH_LONG);
+        mToast = Toast.makeText(GlobalApplication.getContext(), text, Toast.LENGTH_LONG);
         mToast.setGravity(Gravity.CENTER, 0, 0);
         mToast.show();
     }
