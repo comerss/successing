@@ -1,10 +1,8 @@
 package com.comers.baselibrary.http;
 
-import com.comers.basic.base.LoadingDialog;
-import com.comers.basic.utils.ConstantsPool;
-import com.comers.basic.utils.SharedUtils;
-import com.comers.basic.utils.ToastUtils;
-import com.comers.basic.utils.UIUtils;
+import android.app.Dialog;
+
+import com.comers.baselibrary.utils.ToastUtils;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -19,6 +17,7 @@ import okhttp3.Callback;
 import okhttp3.Request;
 import okhttp3.Response;
 
+
 /**
  * Created by Comers on 2017/10/24.
  */
@@ -28,16 +27,16 @@ public class BaseRequest<R extends BaseRequest> {
     Map<String, Object> mObjectMaps = new HashMap<>();
     Gson mGson = new Gson();
     boolean mShowDialog = true;
-    LoadingDialog mLoadingDialog;
+    Dialog mLoadingDialog;
 
     public BaseRequest(String url) {
         mURI = url;
         if (HttpHelper.mContext != null)
-            mLoadingDialog = new LoadingDialog(HttpHelper.mContext);
+//            mLoadingDialog = new LoadingDialog(HttpHelper.mContext);
         mObjectMaps.clear();
-        mObjectMaps.put("token", SharedUtils.get(ConstantsPool.TOKEN,""));
+//        mObjectMaps.put("token", SharedUtils.get(ConstantsPool.TOKEN,""));
         mObjectMaps.put("app", "android");
-        mObjectMaps.put("version", UIUtils.getVersionCode());
+//        mObjectMaps.put("version", UIUtils.getVersionCode());
     }
 
     public R params(Map<String, Object> params) {

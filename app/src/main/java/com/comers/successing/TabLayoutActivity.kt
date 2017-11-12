@@ -7,6 +7,9 @@ import com.comers.baselibrary.base.BaseActivity
  */
 
 class TabLayoutActivity:BaseActivity(){
+    override fun initBefore() {
+    }
+
     override fun getLayoutId(): Int {
         return  R.layout.activity_tablayout
     }

@@ -18,7 +18,7 @@ import android.support.v7.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.comers.basic.R;
+import com.comers.baselibrary.R;
 
 import java.io.File;
 import java.io.FileOutputStream;

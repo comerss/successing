@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ToolBarStyle" parent="Theme.AppCompat">
+        <item name="android:actionBarSize">15dp</item>
+        <item name="actionMenuTextColor">@android:color/black</item>
+    </style>
+</resources>

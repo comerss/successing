@@ -2,10 +2,6 @@ package com.comers.baselibrary.http;
 
 import android.text.TextUtils;
 
-import com.comers.basic.utils.ConstantsPool;
-import com.comers.basic.utils.SharedUtils;
-import com.comers.basic.utils.UIUtils;
-
 import java.util.Map;
 
 import okhttp3.Request;
@@ -40,9 +36,9 @@ public class GetRequest extends BaseRequest<GetRequest> {
         String url = getFixUrl(mURI);
         final Request request = new Request.Builder()
                 .url(url)
-                .addHeader("Cookie", "token=" + SharedUtils.get(ConstantsPool.TOKEN, ""))
+//                .addHeader("Cookie", "token=" + SharedUtils.get(ConstantsPool.TOKEN, ""))
                 .addHeader("Cookie", "app=android")
-                .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
+//                .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
                 .build();
         perform(request, callBack);
     }
@@ -55,9 +51,9 @@ public class GetRequest extends BaseRequest<GetRequest> {
         String url = getFixUrl(mURI);
         final Request request = new Request.Builder()
                 .url(url)
-                .addHeader("Cookie", "token=" + SharedUtils.get(ConstantsPool.TOKEN, ""))
+//                .addHeader("Cookie", "token=" + SharedUtils.get(ConstantsPool.TOKEN, ""))
                 .addHeader("Cookie", "app=android")
-                .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
+//                .addHeader("Cookie", "version=" + UIUtils.getVersionCode())
                 .build();
         performSync(request, callBack);
     }

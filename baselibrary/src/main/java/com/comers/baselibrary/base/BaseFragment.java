@@ -11,10 +11,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.comers.basic.utils.ConstantsPool;
-import com.comers.basic.utils.SharedUtils;
-import com.comers.basic.utils.ToastUtils;
-import com.comers.basic.utils.UIUtils;
+import com.comers.baselibrary.utils.ToastUtils;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -44,7 +41,6 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         int layoutID=getLayoutId();
         rootView = inflater.inflate(layoutID,null);
-        token  = SharedUtils.get(getActivity(), ConstantsPool.TOKEN, "");
         initView();
         initData();
         initListener();
@@ -66,7 +62,6 @@ public abstract class BaseFragment extends Fragment {
         mObjectMap.clear();
         mObjectMap.put("token", token);
         mObjectMap.put("app","android");
-        mObjectMap.put("version", UIUtils.getVersionCode());
     }
     protected abstract void initBefore();
     //获取数据

@@ -2,7 +2,6 @@ package com.comers.baselibrary.http;
 
 import android.content.Context;
 
-import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -83,8 +82,8 @@ public class HttpHelper {
             Request request = chain.request();
 
             long t1 = System.nanoTime();//请求发起的时间
-            Logger.i(String.format("发送请求 %s on %s%n%s",
-                    request.url(), chain.connection(), request.headers()));
+//            Logger.i(String.format("发送请求 %s on %s%n%s",
+//                    request.url(), chain.connection(), request.headers()));
 
             Response response = chain.proceed(request);
 
@@ -95,11 +94,11 @@ public class HttpHelper {
             //个新的response给应用层处理
             ResponseBody responseBody = response.peekBody(1024 * 1024);
 
-           Logger.i(String.format("接收响应: [%s] %n返回json:【%s】 %.1fms%n%s",
-                    response.request().url(),
-                    responseBody.string(),
-                    (t2 - t1) / 1e6d,
-                    response.headers()));
+//           Logger.i(String.format("接收响应: [%s] %n返回json:【%s】 %.1fms%n%s",
+//                    response.request().url(),
+//                    responseBody.string(),
+//                    (t2 - t1) / 1e6d,
+//                    response.headers()));
 
             return response;
         }

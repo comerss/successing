@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/lyBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:padding="13dp">
+
+        <ImageView
+            android:layout_width="5dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="3dp"
+            android:src="@drawable/fanhui"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="标题"
+        android:id="@+id/txTitle"
+        android:paddingTop="13dp"
+        android:paddingBottom="13dp"
+        android:textColor="@color/c_0d0d0d"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/txRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="10dp"
+        android:textColor="@color/c_c03e3e"
+        android:textSize="14sp"/>
+    <!--这里只做了基本的几个控件，如果需要图标的话直接自行添加，比图说右边需要图标控件-->
+</RelativeLayout>
